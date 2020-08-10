@@ -139,7 +139,9 @@ func GetLoad1() float64 {
 }
 
 func getWindowsDrives() (drives []sigar.FileSystem) {
-	for _, drive := range "CDEFGHIJKLMNOPQRSTUVWXYZ" {
+// Temp-Fix for Issue#371
+// Only scan C-Drive
+	for _, drive := range "C" {
 		dirName := string(drive) + ":\\"
 		dirHandle, err := os.Open(dirName)
 		defer dirHandle.Close()
